@@ -8,11 +8,28 @@
     <title>Document</title>
 </head>
 <body>
+{{--@if($errors->any())--}}
+{{--{{dd($errors)}}--}}
+{{--@endif--}}
 <form action="" method="post">
     @csrf
-    <input type="text" name="title" placeholder="Tiêu đề">
-    <input type="text" name="content" placeholder="Nội dung">
-    <input type="text" name="user_id" placeholder="ID user" value="1">
+    <input type="text" name="title" placeholder="Tiêu đề" value="{{old('title')}}">
+    @error('title')
+    <p style="color: red">{{$message}}</p>
+    @enderror
+    <input type="text" name="content" placeholder="Nội dung" value="{{old('content')}}">
+    @error('content')
+    <p style="color: red">{{$message}}</p>
+    @enderror
+
+    <select name="user_id">
+        @foreach(\App\Models\User::all() as $user)
+            <option value="{{$user->id}}">{{$user->name}}</option>
+        @endforeach
+    </select>
+    @error('user_id')
+    <p style="color: red">{{$message}}</p>
+    @enderror
     <hr>
     <h3>Danh sách thể loại</h3>
     @foreach($categories as $category)

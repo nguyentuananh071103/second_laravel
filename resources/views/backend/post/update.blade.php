@@ -17,7 +17,7 @@
     <h3>Danh sách thể loại</h3>
     @foreach($categories as $category)
 
-        <input type="checkbox" {{in_array($category->id,$myCategories)?"checked":""}} name="category[]" value="{{$category->id}}"> {{$category->name}} <br>
+        <input type="checkbox" {{$post->checkCategory($category->id)?"checked":""}} name="category[]" value="{{$category->id}}"> {{$category->name}} <br>
     @endforeach
     <br>
     <button type="submit">Sửa bài viết</button>
