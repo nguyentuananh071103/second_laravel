@@ -1,4 +1,7 @@
-<!doctype html>
+@extends('backend.layout.master')
+@section('content')
+
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +11,7 @@
     <title>Document</title>
 </head>
 <body>
-<a type="button" class="btn btn-primary" href="{{route("posts.create")}}">Thêm mới bài viết</a>
-<table border="1px">
+<table class="table table-bordered" border="1px">
     <thead>
     <tr>
         <th>ID</th>
@@ -36,9 +38,12 @@
             </td>
             <td>{{$post->user->name}}</td>
             <td><a href="{{route('posts.edit',$post->id)}}">Update</a></td>
+            <td><a href="{{route('posts.show',$post->id)}}">Detail</a></td>
+            <td><a onclick="return confirm('Are you sure ???')" href="{{ route('posts.destroy',$post->id) }}">Delete</a></td>
         </tr>
     @endforeach
     </tbody>
 </table>
 </body>
 </html>
+@endsection

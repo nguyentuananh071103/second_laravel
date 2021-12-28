@@ -35,7 +35,9 @@ class PostController extends Controller
         $data = $request->only("title","content","user_id");
         $post = Post::create($data);
         $post->categories()->attach($request->category);
+        toastr()->success('Create Successfully');
         return redirect()->route("posts.index");
+
     }
     public function edit($id)
     {
@@ -51,5 +53,19 @@ class PostController extends Controller
         $post->update($data);
         $post->categories()->sync($request->category);
         return redirect()->route("posts.index");
+    }
+    public function show($id)
+    {
+        $post = $this->postRepository->getById($id);
+        $categories = $this->categoryRepository->getAll();
+//        dd($categories);
+        return view("backend.post.detail",compact("post","categories"));
+    }
+
+    public function destroy($id)
+    {
+        $this->postRepository->delete($id);
+        return redirect()->route('posts.index');
+
     }
 }

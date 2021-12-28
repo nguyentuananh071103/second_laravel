@@ -13,4 +13,10 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     {
         $this->model = $post;
     }
+
+    public function delete($id)
+    {
+        $post = Post::query()->findOrFail($id);
+        $post->delete();
+    }
 }
