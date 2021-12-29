@@ -11,6 +11,14 @@
     <title>Document</title>
 </head>
 <body>
+<a href="{{route('posts.showFavorite')}}">Favorite List({{session()->has('bookmark') ? count(session()->get('bookmark')) : ""}})</a>
+{{--{{ $posts->links() }}--}}
+<div class="col-5">
+{{--    <form action="">--}}
+{{--        <input type="text" id="search" class="form-control">--}}
+{{--    </form>--}}
+</div>
+
 <table class="table table-bordered" border="1px">
     <thead>
     <tr>
@@ -22,13 +30,13 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($posts as $post)
+    @foreach($posts as $key => $post)
         <tr>
-            <td>{{$post->id}}</td>
+            <td>{{$key + 1}}</td>
+{{--            <td>{{$post->id}}</td>--}}
             <td>{{$post->title}}</td>
-            {{--            <td>{{$post->content}}</td>--}}
             <td>
-                @if(count($post->categories))
+                @if(count($post->categories) > 0)
                     @foreach($post->categories as $category)
                         <p>{{$category->name}}</p>
                     @endforeach
@@ -37,9 +45,10 @@
                 @endif
             </td>
             <td>{{$post->user->name}}</td>
-            <td><a href="{{route('posts.edit',$post->id)}}">Update</a></td>
-            <td><a href="{{route('posts.show',$post->id)}}">Detail</a></td>
-            <td><a onclick="return confirm('Are you sure ???')" href="{{ route('posts.destroy',$post->id) }}">Delete</a></td>
+            <td><a href="{{route('posts.edit',$post->id)}}"><i class="fas fa-pen-alt"></i></a></td>
+            <td><a href="{{route('posts.show',$post->id)}}"><i class="fas fa-info"></i> </a></td>
+            <td><a onclick="return confirm('Are you sure ???')" href="{{ route('posts.destroy',$post->id) }}"><i class="fas fa-calendar-times"></i></a></td>
+            <td><a href="{{route('posts.addToFavorite', $post->id)}}"><i class="fas fa-heart"></i></a> </td>
         </tr>
     @endforeach
     </tbody>

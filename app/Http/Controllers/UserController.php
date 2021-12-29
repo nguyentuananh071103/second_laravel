@@ -28,6 +28,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+//        $request->validate([
+//            "name"=>"require",
+//            "email"=>"require",
+//            "password"=>"require",
+//        ]);
          $this->userRepository->store($request);
         return redirect()->route("users.index");
     }

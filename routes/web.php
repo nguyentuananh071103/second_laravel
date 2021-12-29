@@ -20,10 +20,6 @@ Route::get('/', function () {
     return redirect()->route('posts.index');
 });
 
-//Route::get('/', function () {
-//    return view("backend.layout.master");
-//});
-
 Route::prefix('users')->group(function (){
     Route::get('/',[UserController::class,"index"])->name('users.index');
     Route::get('/create',[UserController::class,"create"])->name('users.create');
@@ -42,6 +38,11 @@ Route::prefix('posts')->group(function (){
     Route::post('/{id}/update',[PostController::class,"update"])->name('posts.update');
     Route::get('/{id}/detail',[PostController::class,"show"])->name('posts.show');
     Route::get('/{id}/delete',[PostController::class,"destroy"])->name('posts.destroy');
+    Route::get('/{id}/bookmark',[PostController::class,"addToFavorite"])->name("posts.addToFavorite");
+    Route::get('/bookmark',[PostController::class,"showFavorite"])->name("posts.showFavorite");
+    Route::get('/{id}/deleteFavorite',[PostController::class,"deleteFavorite"])->name("posts.deleteFavorites");
+    Route::any('/search',[PostController::class,"search"])->name("posts.search");
+
 });
 
 Route::get('/login',[AuthController::class,"showFormLogin"])->name("admin.showFormLogin");

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class PostRepository extends BaseRepository implements PostRepositoryInterface
 {
+    protected $table = "posts";
+
     public function __construct(Post $post)
     {
         $this->model = $post;
@@ -18,5 +20,14 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     {
         $post = Post::query()->findOrFail($id);
         $post->delete();
+    }
+
+    public function search($request)
+    {
+        if ($request->searchPost !== null) {
+            return Post::with('categories')->where("title","like",'%'. $request->searchPost.'%')->get();
+        }else{
+            return Post::with('categories')->get();
+        }
     }
 }

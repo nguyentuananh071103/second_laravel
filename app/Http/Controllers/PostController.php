@@ -32,11 +32,14 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
+//        $request->validate([
+//            "title"=>"require",
+//            "content"=>"require",
+//        ]);
         $data = $request->only("title","content","user_id");
         $post = Post::create($data);
         $post->categories()->attach($request->category);
-        toastr()->success('Create Successfully');
-        return redirect()->route("posts.index");
+        return redirect()->route("posts.index")->with('message','Thêm mới thành công');
 
     }
     public function edit($id)
@@ -58,7 +61,6 @@ class PostController extends Controller
     {
         $post = $this->postRepository->getById($id);
         $categories = $this->categoryRepository->getAll();
-//        dd($categories);
         return view("backend.post.detail",compact("post","categories"));
     }
 
@@ -67,5 +69,48 @@ class PostController extends Controller
         $this->postRepository->delete($id);
         return redirect()->route('posts.index');
 
+    }
+
+    public function addToFavorite($id)
+    {
+        $post = Post::findOrFail($id);
+        $bookmark = session()->get('bookmark') ?? [];
+        if (!isset($bookmark[$id])) {
+            $bookmark[$id] = array(
+                'id'=>$post->id,
+                'title'=>$post->title,
+                'content'=>$post->content,
+                'quantity'=>1
+            );
+        }else{
+            $bookmark[$id]['quantity']++;
+        }
+        session()->put('bookmark', $bookmark);
+        return redirect()->back();
+
+    }
+
+    public function showFavorite()
+    {
+        $favorites = session()->get('bookmark');
+        return view('backend.post.favorite-list', compact('favorites'));
+    }
+
+    public function deleteFavorite($id)
+    {
+        $favorites = session()->get('bookmark');
+        if ($favorites[$id]['quantity']>1) {
+            $favorites[$id]['quantity'] --;
+        }else {
+            unset($favorites[$id]);
+        }
+        session()->put('bookmark', $favorites);
+        return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $posts = $this->postRepository->search($request);
+        return response()->json($posts);
     }
 }

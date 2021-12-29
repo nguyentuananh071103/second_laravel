@@ -10,7 +10,7 @@ class BaseRepository implements BaseRepositoryInterface
     protected $model;
     public function getAll()
     {
-       return $this->model->all();
+       return $this->model->get();
     }
 
     public function getById($id)

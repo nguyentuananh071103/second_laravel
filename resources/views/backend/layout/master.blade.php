@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Regal Admin</title>
     <!-- base:css -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+    </script>
     <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/feather/feather.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/base/vendor.bundle.base.css')}}">
@@ -16,11 +21,23 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/jquery-bar-rating/fontawesome-stars-o.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/jquery-bar-rating/fontawesome-stars.css')}}">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- CSS only -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
+    @if(Session::has('message'))
+        <script>
+            $(function(){
+                toastr.info("{{ Session::get('message') }}");
+            })
+        </script>
+    @endif
 </head>
 <body>
 <div class="container-scroller">
@@ -34,18 +51,25 @@
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="icon-menu"></span>
             </button>
+            <form action="{{route('posts.search')}}" method="post">
+                @csrf
             <ul class="navbar-nav mr-lg-2">
                 <li class="nav-item nav-search d-none d-lg-block">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
+{{--                <span class="input-group-text" id="search">--}}
+{{--                  <i class="icon-search"></i>--}}
+{{--                </span>--}}
+
+                            <button class="input-group-prepend" type="submit">
+                                <i class="icon-search"></i>
+                            </button>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search">
+                        <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search" name="searchPost">
                     </div>
                 </li>
             </ul>
+            </form>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item dropdown d-flex">
                     <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
@@ -98,9 +122,9 @@
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                         <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
                         <a class="dropdown-item preview-item">
-                            <i class="icon-head"></i> Profile
+                            <i class="icon-head"></i> {{\Illuminate\Support\Facades\Auth::user()->name??""}}
                         </a>
-                        <a class="dropdown-item preview-item">
+                        <a href="{{route("admin.showFormLogin")}}" class="dropdown-item preview-item">
                             <i class="icon-inbox"></i> Logout
                         </a>
                     </div>
@@ -125,10 +149,7 @@
                     <img src="{{asset('assets/images/faces/face28.png')}}">
                 </div>
                 <div class="user-name">
-                    Edward Spencer
-                </div>
-                <div class="user-designation">
-                    Developer
+                    {{\Illuminate\Support\Facades\Auth::user()->name??""}}
                 </div>
             </div>
             <ul class="nav">
@@ -165,7 +186,7 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-sm-12 mb-4 mb-xl-0">
-                        <h4 class="font-weight-bold text-dark">Hi, welcome back!</h4>
+                        <h4 class="font-weight-bold text-dark">Hi, welcome bro!</h4>
                     </div>
                 </div>
                 @yield('content')
@@ -203,6 +224,9 @@
 <!-- End plugin js for this page -->
 <!-- Custom js for this page-->
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
+<!-- JavaScript Bundle with Popper -->
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!-- End custom js for this page-->
 </body>
 

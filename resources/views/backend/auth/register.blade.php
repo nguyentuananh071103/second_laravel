@@ -1,190 +1,159 @@
-{{--<!doctype html>--}}
-{{--<html lang="en">--}}
-{{--<head>--}}
-{{--    <meta charset="UTF-8">--}}
-{{--    <meta name="viewport"--}}
-{{--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--}}
-{{--    <meta http-equiv="X-UA-Compatible" content="ie=edge">--}}
-{{--    <title>Document</title>--}}
-{{--</head>--}}
-{{--<body>--}}
-{{--<form action="{{route("admin.register")}}" style="border:1px solid #ccc">--}}
-{{--    <div class="container">--}}
-{{--        <h1>Sign Up</h1>--}}
-{{--        <hr>--}}
-{{--        <label for="name"><b>Name</b></label>--}}
-{{--        <input type="text" placeholder="Enter name" name="name" required>--}}
-
-{{--        <label for="email"><b>Email</b></label>--}}
-{{--        <input type="email" placeholder="Enter Email" name="email" required>--}}
-
-{{--        <label for="password"><b>Password</b></label>--}}
-{{--        <input type="password" placeholder="Enter Password" name="password" required>--}}
-
-{{--        <label>--}}
-{{--            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me--}}
-{{--        </label>--}}
-{{--        <div class="clearfix">--}}
-{{--            <button type="button" class="cancelbtn"><a href="{{route("admin.showFormLogin")}}">Cancel</a></button>--}}
-{{--            <a href="{{route("admin.showFormLogin")}}">Sign up</a>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</form>--}}
-{{--</body>--}}
-{{--</html>--}}
-
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
-    <!-- loader-->
-    <link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet"/>
-    <script src="{{asset('assets/js/pace.min.js')}}"></script>
-    <!--favicon-->
-    <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
-    <!-- Bootstrap core CSS-->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
-    <!-- animate CSS-->
-    <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css"/>
-    <!-- Icons CSS-->
-    <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
-    <!-- Custom Style-->
-    <link href="{{asset('assets/css/app-style.css')}}" rel="stylesheet"/>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Glassmorphism login Form Tutorial in html css</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+        *,
+        *:before,
+        *:after{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #080710;
+        }
+        .background{
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+        }
+        .background .shape{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+        }
+        .shape:first-child{
+            background: linear-gradient(
+                #1845ad,
+                #23a2f6
+            );
+            left: -80px;
+            top: -80px;
+        }
+        .shape:last-child{
+            background: linear-gradient(
+                to right,
+                #ff512f,
+                #f09819
+            );
+            right: -30px;
+            bottom: -80px;
+        }
+        form{
+            width: 400px;
+            background-color: rgba(255,255,255,0.13);
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            padding: 50px 35px;
+        }
+        form *{
+            font-family: 'Poppins',sans-serif;
+
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+        form h3{
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+        label{
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        input{
+            display: block;
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        ::placeholder{
+            color: #e5e5e5;
+        }
+        button{
+            margin-top: 50px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .social{
+            margin-top: 30px;
+            display: flex;
+        }
+        .social div{
+            background: red;
+            width: 150px;
+            border-radius: 3px;
+            padding: 5px 10px 10px 5px;
+            background-color: rgba(255,255,255,0.27);
+            color: #eaf0fb;
+            text-align: center;
+        }
+        .social div:hover{
+            background-color: rgba(255,255,255,0.47);
+        }
+        .social .fb{
+            margin-left: 25px;
+        }
+        .social i{
+            margin-right: 4px;
+        }
+
+    </style>
 </head>
+<body>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form action="" method="post">
+    @csrf
+    <h3>Sing up Here</h3>
 
-<body class="bg-theme bg-theme1">
+    <label for="name">Name</label>
+    <input type="text" name="name" placeholder="Name" id="name">
 
-<!-- start loader -->
-<div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
-<!-- end loader -->
 
-<!-- Start wrapper-->
-<div id="wrapper">
+    <label for="email">Email</label>
+    <input type="text" name="email" placeholder="Email or Phone" id="email">
 
-    <div class="card card-authentication1 mx-auto my-4">
-        <div class="card-body">
-            <div class="card-content p-2">
-                <div class="text-center">
-                    <img src="{{asset('assets/images/logo-icon.png')}}" alt="logo icon">
-                </div>
-                <div class="card-title text-uppercase text-center py-3">Sign Up</div>
-                <form action="{{route("admin.register")}}">
-                    <div class="form-group">
-                        <label for="exampleInputName" class="sr-only">Name</label>
-                        <div class="position-relative has-icon-right">
-                            <input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your Name">
-                            <div class="form-control-position">
-                                <i class="icon-user"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail" class="sr-only">Email</label>
-                        <div class="position-relative has-icon-right">
-                            <input type="text" id="exampleInputEmail" class="form-control input-shadow" placeholder="Enter Your Email ">
-                            <div class="form-control-position">
-                                <i class="icon-envelope-open"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword" class="sr-only">Password</label>
-                        <div class="position-relative has-icon-right">
-                            <input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password">
-                            <div class="form-control-position">
-                                <i class="icon-lock"></i>
-                            </div>
-                        </div>
-                    </div>
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password" id="password">
 
-                    <div class="form-group">
-                        <div class="icheck-material-white">
-                            <input type="checkbox" id="user-checkbox" checked="" />
-                            <label for="user-checkbox">I Agree With Terms & Conditions</label>
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn btn-light btn-block waves-effect waves-light"><a href="{{route("admin.showFormLogin")}}"></a>Sign Up</button>
-                    <div class="text-center mt-3">Sign Up With</div>
-
-                    <div class="form-row mt-4">
-                        <div class="form-group mb-0 col-6">
-                            <button type="button" class="btn btn-light btn-block"><i class="fa fa-facebook-square"></i> Facebook</button>
-                        </div>
-                        <div class="form-group mb-0 col-6 text-right">
-                            <button type="button" class="btn btn-light btn-block"><i class="fa fa-twitter-square"></i> Twitter</button>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-        <div class="card-footer text-center py-3">
-            <p class="text-warning mb-0">Already have an account? <a href="{{route("admin.showFormLogin")}}"> Sign In here</a></p>
-        </div>
-    </div>
-
-    <!--Start Back To Top Button-->
-    <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-    <!--End Back To Top Button-->
-
-    <!--start color switcher-->
-    <div class="right-sidebar">
-        <div class="switcher-icon">
-            <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-        </div>
-        <div class="right-sidebar-content">
-
-            <p class="mb-0">Gaussion Texture</p>
-            <hr>
-
-            <ul class="switcher">
-                <li id="theme1"></li>
-                <li id="theme2"></li>
-                <li id="theme3"></li>
-                <li id="theme4"></li>
-                <li id="theme5"></li>
-                <li id="theme6"></li>
-            </ul>
-
-            <p class="mb-0">Gradient Background</p>
-            <hr>
-
-            <ul class="switcher">
-                <li id="theme7"></li>
-                <li id="theme8"></li>
-                <li id="theme9"></li>
-                <li id="theme10"></li>
-                <li id="theme11"></li>
-                <li id="theme12"></li>
-                <li id="theme13"></li>
-                <li id="theme14"></li>
-                <li id="theme15"></li>
-            </ul>
-
-        </div>
-    </div>
-    <!--end color switcher-->
-
-</div><!--wrapper-->
-
-<!-- Bootstrap core JavaScript-->
-<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-<script src="{{asset('assets/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-
-<!-- sidebar-menu js -->
-<script src="{{asset('assets/js/sidebar-menu.js')}}"></script>
-
-<!-- Custom scripts -->
-<script src="{{asset('assets/js/app-script.js')}}"></script>
-
+    <button type="submit"><a href="{{route("admin.showFormLogin")}}">Sign up</a></button>
+    <button type="submit"><a href="{{route("admin.showFormLogin")}}">Cancel</a></button>
+</form>
 </body>
 </html>
