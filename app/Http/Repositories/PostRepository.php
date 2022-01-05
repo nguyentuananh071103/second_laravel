@@ -11,6 +11,12 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
 {
     protected $table = "posts";
 
+    public function getAll($paginate = 5)
+    {
+        $posts = Post::paginate($paginate);
+        return $posts ;
+    }
+
     public function __construct(Post $post)
     {
         $this->model = $post;
@@ -25,9 +31,9 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     public function search($request)
     {
         if ($request->searchPost !== null) {
-            return Post::with('categories')->where("title","like",'%'. $request->searchPost.'%')->get();
+            return Post::with('categories')->where("title","like",'%'. $request->searchPost.'%')->paginate(5);
         }else{
-            return Post::with('categories')->get();
+            return Post::with('categories')->paginate(5);
         }
     }
 }

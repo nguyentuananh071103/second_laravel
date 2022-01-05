@@ -24,7 +24,7 @@
         @enderror
         <hr>
     </div>
-    <h3>Danh sách thể loại</h3>
+    <h3>Categories</h3>
         @foreach($categories as $category)
             <input type="checkbox" {{$post->checkCategory($category->id)?"checked":""}} name="category[]" value="{{$category->id}}"> {{$category->name}} <br>
         @endforeach

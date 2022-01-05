@@ -15,19 +15,19 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $category = new Category();
-        $category->name = "Đời sống";
+        $category->name = "Lập trình web";
         $category->save();
 
         $category = new Category();
-        $category->name = "Xã hội";
+        $category->name = "Kiểm thử";
         $category->save();
 
         $category = new Category();
-        $category->name = "Kinh doanh";
+        $category->name = "DevOps";
         $category->save();
 
         $category = new Category();
-        $category->name = "Pháp luật";
+        $category->name = "Thiết kế";
         $category->save();
     }
 }

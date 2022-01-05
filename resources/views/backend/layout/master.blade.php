@@ -21,15 +21,9 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/jquery-bar-rating/fontawesome-stars-o.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/jquery-bar-rating/fontawesome-stars.css')}}">
-    <!-- CSS only -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <!-- CSS only -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <!-- endinject -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
     @if(Session::has('message'))
         <script>
@@ -41,7 +35,6 @@
 </head>
 <body>
 <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="index.html"><img src="{{asset('assets/images/logo.svg')}}" alt="logo"/></a>
@@ -57,15 +50,7 @@
                 <li class="nav-item nav-search d-none d-lg-block">
                     <div class="input-group">
                         <div class="input-group-prepend">
-{{--                <span class="input-group-text" id="search">--}}
-{{--                  <i class="icon-search"></i>--}}
-{{--                </span>--}}
-
-                            <button class="input-group-prepend" type="submit">
-                                <i class="icon-search"></i>
-                            </button>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search" name="searchPost">
                     </div>
                 </li>
             </ul>
@@ -199,21 +184,12 @@
                     <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
                 </div>
             </footer>
-
-            <!-- partial -->
         </div>
-        <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
 </div>
-<!-- container-scroller -->
 
-<!-- base:js -->
 <script src="{{asset('assets/vendors/base/vendor.bundle.base.js')}}"></script>
-<!-- endinject -->
-<!-- Plugin js for this page-->
-<!-- End plugin js for this page-->
-<!-- inject:js -->
+
 <script src="{{asset('assets/js/off-canvas.js')}}"></script>
 <script src="{{asset('assets/js/hoverable-collapse.js')}}"></script>
 <script src="{{asset('assets/js/template.js')}}"></script>

@@ -6,7 +6,9 @@ use App\Http\Repositories\CategoryRepository;
 use App\Http\Repositories\PostRepository;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -28,18 +30,21 @@ class PostController extends Controller
     {
         $categories = $this->categoryRepository->getAll();
         return view("backend.post.create",compact("categories"));
+//        function create() {
+//            if (!Gate::allows('add-new-post')) {
+//                abort(403);
+//            }
+//            $categories = Category::all();
+//            return view('backend.post.create', compact('categories'));
+//        }
     }
 
     public function store(PostRequest $request)
     {
-//        $request->validate([
-//            "title"=>"require",
-//            "content"=>"require",
-//        ]);
         $data = $request->only("title","content","user_id");
         $post = Post::create($data);
-        $post->categories()->attach($request->category);
-        return redirect()->route("posts.index")->with('message','Thêm mới thành công');
+        $post->categories()->sync($request->category);
+        return redirect()->route("posts.index");
 
     }
     public function edit($id)
@@ -111,6 +116,8 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $posts = $this->postRepository->search($request);
-        return response()->json($posts);
+//        dd($posts);
+//        return response()->json($posts);
+        return view('backend.post.list',compact('posts'));
     }
 }

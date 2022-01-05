@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 //
 Route::get('/', function () {
-    return redirect()->route('posts.index');
+    return redirect()->route('admin.showFormLogin');
 });
 
 Route::prefix('users')->group(function (){
